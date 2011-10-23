@@ -5,6 +5,26 @@ $(document).ready(function() {
     showRatings();
 });
 
+var timeout;
+//Catch the search ajax call and show our ratings
+$("#tsf").submit(function(){
+    console.log("submit event triggered for search form");
+    $(".qRataRating").remove();
+    $(document).ready(function() {
+       showRatings();
+    });
+})
+
+//if the user pressed enter inside the search form, run the ratings
+$("#tsf").change(function(e){
+    
+    console.log("change event triggered for search form");
+    $(".qRataRating").remove();
+    $(document).ready(function() {
+        timeout = setTimeout(showRatings, 5000);  
+    });
+});
+
 //global variables to manage the status of the popup
 var onPopup = false;
 var onRating = false;
@@ -20,12 +40,12 @@ function showRatings() {
     //get the result elements and store them in a variable
     var results = $('.vsc').get();
     var sites = $('.l').get();
-    console.log("results: "+results.length);
+    //console.log("results: "+results.length);
     
    
     //Create new html elements for each rating and append them to the proper elements
     for(var i=0; i<sites.length; i++){
-        console.log(sites[i].href);
+        //console.log(sites[i].href);
         $("<div/>", {
             "id": i,
             "class": "qRataRating",
@@ -57,17 +77,17 @@ function showRatings() {
    
     //give the elements some mousover event and mouse out events
     $(".qRataRating").mouseover(function(event){
-        console.log("mouseover event for Rating fired");
+        //console.log("mouseover event for Rating fired");
         if (onPopup || onRating) {
             return false;
         }
         onRating = true;
         qrataPopup(event.target.id, sites[event.target.id].href);
     }).mouseout(function(){
-        console.log("mousout event for Rating fired");
+        //console.log("mousout event for Rating fired");
         onRating = false;
         timeoutID = setTimeout(leavePopup, 500);
-        console.log("onPopup: "+onPopup+"   onRating: "+onRating);
+        //console.log("onPopup: "+onPopup+"   onRating: "+onRating);
     });
 
 }
@@ -106,7 +126,7 @@ function qrataPopup(id, site){
 //Functions to manage whether to keep the popup open or not
 function keepOpen() {
     onPopup = true;
-    console.log("onPopup is true");
+    //console.log("onPopup is true");
 }
 function letClose() {
     onPopup = false;
@@ -125,3 +145,7 @@ function leavePopup(){
     
 }
 //***********************************************************************************************
+
+function addRateButton(){
+    
+}

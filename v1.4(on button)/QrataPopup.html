@@ -1,15 +1,18 @@
 <html>
     <body>
         <script type ="text/javascript" src="QrataContentScript.js"></script>
+        <script type ="text/javascript" src="jquery.js"></script>
         <script>
-      function displayRatings(){
-          alert("displayRatings called");
-          showRatings();
-      }
+            $("#rate").submit(function(){        
+                $(document).ready(function() {
+                    showRatings();
+                });
       
         </script>
+        <form id="rate">
         <div<>
-            <input type="submit" onClick= "displayRatings()" name="Rate" value="Rate">
+            <input type="submit" id="rateButton" name="Rate" value="Rate">
         </div>
+        </form>
     </body>
 </html>
