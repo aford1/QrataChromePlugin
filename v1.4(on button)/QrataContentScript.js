@@ -4,10 +4,10 @@
 
 function showRatings() {
 
-    //alert("showRatings called");
+    console.log("showRatings called");
     
     var results = $('.vsc').get();
-    //alert(results.length);
+    console.log("results: "+results.length);
    
     //Create new html elements for our ratings and append them to the vsc classes
     for(var i=0; i<results.length; i++){
@@ -20,6 +20,7 @@ function showRatings() {
         //get the position of this vsc element
         var vscPosition = $(results[i]).position();
         $("#"+i+".qRataRating").css({
+            "font-size":"16px",
             "position":"absolute",
             "left":vscPosition.left+518,
             "top":vscPosition.top-2,
@@ -35,14 +36,15 @@ function showRatings() {
         "width":"28px", 
         "color":"white"
     });
+   
     //give the elements some mousover event and mouse out events
     $(".qRataRating").mouseover(function(event){
         qrataPopup(event.target.id);
     });
+    //mouse has left the rating icon
     $(".qRataRating").mouseout(function(){
         leavePopup();
     });
-   
 }
 
 
@@ -53,28 +55,28 @@ $(document).ready(function() {
 
 //this popup window appears when the user mouses over the qrata rating
 function qrataPopup(id){
-    //$("#"+id+".qRataRating").css("background-color","green");
+    $("#"+id+".qRataRating").css("background-color","lime");
     
     //create a new html element for our popup
     $("<div/>", {
         "class": "qrataPopup",
         text: "QRata Rating for id: "+id
-    }).appendTo("body");
+    }).appendTo('body');
     //add the css for the html element
     var position = $("#"+id+".qRataRating").position();
     $(".qrataPopup").css({
         "background-color":"black", 
-        "height":"400px", 
-        "width":"300px", 
+        "height":"500px", 
+        "width":"400px", 
         "color":"white",
         "position":"absolute",
-        "left":position.left+28,
-        "top":position.top+181,
+        "left":position.left+25,
+        "top":position.top,
         "z-index":"5002"
     });
 }
 //when the users mouse leaves the rating, hide the popup
 function leavePopup(){
-    //$(".qRataRating").css("background-color","green");  
+    $(".qRataRating").css("background-color","green");  
     $(".qrataPopup").remove();
 }
