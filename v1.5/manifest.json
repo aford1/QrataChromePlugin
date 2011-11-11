@@ -1,0 +1,24 @@
+{
+    "name": "Qrata Extension",
+    "version": "1.5",
+    "description": "Displays a ranking and other information for google search results",
+    "icons": 
+    {
+        "48" : "sample-48.png",
+        "128" : "sample-128.png"
+    },
+    
+    "browser_action": {
+        
+        "default_icon": "sample-48.png",
+        "popup": "QrataPopup.html"
+    },
+    
+    "content_scripts":
+    [
+    {
+        "matches": ["http://www.google.com/*"],
+        "js" : ["jquery.js","QrataContentScript.js" ]
+    }
+    ]
+}
